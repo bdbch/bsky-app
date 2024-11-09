@@ -5,7 +5,10 @@ import {
   defaultScale,
   dimScale,
   GREEN_HUE,
+  ORANGE_HUE,
+  PURPLE_HUE,
   RED_HUE,
+  YELLOW_HUE,
 } from '#/alf/util/colorGeneration'
 
 const themes = createThemes({
@@ -13,6 +16,13 @@ const themes = createThemes({
     primary: BLUE_HUE,
     negative: RED_HUE,
     positive: GREEN_HUE,
+
+    blue: BLUE_HUE,
+    red: RED_HUE,
+    green: GREEN_HUE,
+    orange: ORANGE_HUE,
+    purple: PURPLE_HUE,
+    yellow: YELLOW_HUE,
   },
 })
 
@@ -50,6 +60,13 @@ export function createThemes({
     primary: number
     negative: number
     positive: number
+
+    blue: number
+    red: number
+    green: number
+    orange: number
+    purple: number
+    yellow: number
   }
 }): {
   lightPalette: Palette
@@ -92,6 +109,20 @@ export function createThemes({
     primary_950: `hsl(${hues.primary}, 99%, 10%)`,
     primary_975: `hsl(${hues.primary}, 99%, 7%)`,
 
+    blue_25: `hsl(${hues.blue}, 99%, 97%)`,
+    blue_50: `hsl(${hues.blue}, 99%, 95%)`,
+    blue_100: `hsl(${hues.blue}, 99%, 90%)`,
+    blue_200: `hsl(${hues.blue}, 99%, 80%)`,
+    blue_300: `hsl(${hues.blue}, 99%, 70%)`,
+    blue_400: `hsl(${hues.blue}, 99%, 60%)`,
+    blue_500: `hsl(${hues.blue}, 99%, 53%)`,
+    blue_600: `hsl(${hues.blue}, 99%, 42%)`,
+    blue_700: `hsl(${hues.blue}, 99%, 34%)`,
+    blue_800: `hsl(${hues.blue}, 99%, 26%)`,
+    blue_900: `hsl(${hues.blue}, 99%, 18%)`,
+    blue_950: `hsl(${hues.blue}, 99%, 10%)`,
+    blue_975: `hsl(${hues.blue}, 99%, 7%)`,
+
     green_25: `hsl(${hues.positive}, 82%, 97%)`,
     green_50: `hsl(${hues.positive}, 82%, 95%)`,
     green_100: `hsl(${hues.positive}, 82%, 90%)`,
@@ -119,6 +150,48 @@ export function createThemes({
     red_900: `hsl(${hues.negative}, 91%, 18%)`,
     red_950: `hsl(${hues.negative}, 91%, 10%)`,
     red_975: `hsl(${hues.negative}, 91%, 7%)`,
+
+    yellow_25: `hsl(${hues.yellow}, 99%, 97%)`,
+    yellow_50: `hsl(${hues.yellow}, 99%, 95%)`,
+    yellow_100: `hsl(${hues.yellow}, 99%, 90%)`,
+    yellow_200: `hsl(${hues.yellow}, 99%, 80%)`,
+    yellow_300: `hsl(${hues.yellow}, 99%, 70%)`,
+    yellow_400: `hsl(${hues.yellow}, 99%, 60%)`,
+    yellow_500: `hsl(${hues.yellow}, 99%, 53%)`,
+    yellow_600: `hsl(${hues.yellow}, 99%, 42%)`,
+    yellow_700: `hsl(${hues.yellow}, 99%, 34%)`,
+    yellow_800: `hsl(${hues.yellow}, 99%, 26%)`,
+    yellow_900: `hsl(${hues.yellow}, 99%, 18%)`,
+    yellow_950: `hsl(${hues.yellow}, 99%, 10%)`,
+    yellow_975: `hsl(${hues.yellow}, 99%, 7%)`,
+
+    orange_25: `hsl(${hues.orange}, 99%, 97%)`,
+    orange_50: `hsl(${hues.orange}, 99%, 95%)`,
+    orange_100: `hsl(${hues.orange}, 99%, 90%)`,
+    orange_200: `hsl(${hues.orange}, 99%, 80%)`,
+    orange_300: `hsl(${hues.orange}, 99%, 70%)`,
+    orange_400: `hsl(${hues.orange}, 99%, 60%)`,
+    orange_500: `hsl(${hues.orange}, 99%, 53%)`,
+    orange_600: `hsl(${hues.orange}, 99%, 42%)`,
+    orange_700: `hsl(${hues.orange}, 99%, 34%)`,
+    orange_800: `hsl(${hues.orange}, 99%, 26%)`,
+    orange_900: `hsl(${hues.orange}, 99%, 18%)`,
+    orange_950: `hsl(${hues.orange}, 99%, 10%)`,
+    orange_975: `hsl(${hues.orange}, 99%, 7%)`,
+
+    purple_25: `hsl(${hues.purple}, 99%, 97%)`,
+    purple_50: `hsl(${hues.purple}, 99%, 95%)`,
+    purple_100: `hsl(${hues.purple}, 99%, 90%)`,
+    purple_200: `hsl(${hues.purple}, 99%, 80%)`,
+    purple_300: `hsl(${hues.purple}, 99%, 70%)`,
+    purple_400: `hsl(${hues.purple}, 99%, 60%)`,
+    purple_500: `hsl(${hues.purple}, 99%, 53%)`,
+    purple_600: `hsl(${hues.purple}, 99%, 42%)`,
+    purple_700: `hsl(${hues.purple}, 99%, 34%)`,
+    purple_800: `hsl(${hues.purple}, 99%, 26%)`,
+    purple_900: `hsl(${hues.purple}, 99%, 18%)`,
+    purple_950: `hsl(${hues.purple}, 99%, 10%)`,
+    purple_975: `hsl(${hues.purple}, 99%, 7%)`,
   } as const
 
   const lightPalette = {

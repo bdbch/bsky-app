@@ -1,4 +1,5 @@
 import React, {useCallback} from 'react'
+import {Pressable, View} from 'react-native'
 import Animated, {
   FadeInUp,
   FadeOutUp,
@@ -10,8 +11,9 @@ import {useLingui} from '@lingui/react'
 
 import {CommonNavigatorParams, NativeStackScreenProps} from '#/lib/routes/types'
 import {useSetThemePrefs, useThemePrefs} from '#/state/shell'
-import {atoms as a, native, useAlf, useTheme} from '#/alf'
+import {atoms as a, native, useAlf, useTheme, useThemeColors} from '#/alf'
 import * as ToggleButton from '#/components/forms/ToggleButton'
+import {CheckThick_Stroke2_Corner0_Rounded as Check} from '#/components/icons/Check'
 import {Props as SVGIconProps} from '#/components/icons/common'
 import {Moon_Stroke2_Corner0_Rounded as MoonIcon} from '#/components/icons/Moon'
 import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
@@ -161,6 +163,11 @@ export function AppearanceSettingsScreen({}: Props) {
                 values={[fonts.scale]}
                 onChange={onChangeFontScale}
               />
+
+              <AppearanceColorPickerGroup
+                title={_(msg`Theme color`)}
+                icon={TextSize}
+              />
             </Animated.View>
           </SettingsList.Container>
         </Layout.Content>
@@ -216,5 +223,92 @@ export function AppearanceToggleButtonGroup({
         </ToggleButton.Group>
       </SettingsList.Group>
     </>
+  )
+}
+
+export function AppearanceColorPickerGroup({
+  title,
+  description,
+  icon: Icon,
+}: {
+  title: string
+  description?: string
+  icon: React.ComponentType<SVGIconProps>
+}) {
+  const {themeColor} = useThemePrefs()
+  const {setThemeColor} = useSetThemePrefs()
+  const themeColors = useThemeColors()
+
+  return (
+    <>
+      <SettingsList.Group contentContainerStyle={[a.gap_sm]} iconInset={false}>
+        <SettingsList.ItemIcon icon={Icon} />
+        <SettingsList.ItemText>{title}</SettingsList.ItemText>
+        {description && (
+          <Text style={[a.text_sm, a.leading_snug, a.w_full]}>
+            {description}
+          </Text>
+        )}
+        <View style={[a.gap_sm, a.flex_row, a.w_full, a.py_sm]}>
+          {themeColors.map(item => (
+            <ColorPickerItem
+              key={item.value}
+              label={item.label}
+              value={item.value}
+              color={item.color}
+              emoji={item.emoji}
+              isActive={themeColor === item.value}
+              onPress={() => setThemeColor(item.value)}
+            />
+          ))}
+        </View>
+      </SettingsList.Group>
+    </>
+  )
+}
+
+export function ColorPickerItem({
+  label,
+  value,
+  color,
+  emoji,
+  isActive,
+  onPress,
+}: {
+  label: string
+  value: string
+  color: string
+  emoji: string
+  isActive?: boolean
+  onPress: (value: string) => void
+}) {
+  return (
+    <View style={[a.flex_row, a.flex_grow, a.justify_center]} key={value}>
+      <View style={[a.gap_md, a.align_center]}>
+        <Pressable
+          aria-label={`Set color to ${label}`}
+          aria-role="button"
+          style={({hovered}) => [
+            a.rounded_full,
+            a.transition_opacity,
+            a.justify_center,
+            a.align_center,
+            {
+              width: 64,
+              height: 64,
+              backgroundColor: color,
+              opacity: hovered || isActive ? 1 : 0.9,
+              outline: isActive ? `2px solid ${color}` : 'none',
+              outlineOffset: '2px',
+            },
+          ]}
+          accessibilityLabel={`Set color to ${label}`}
+          accessibilityHint={`Set color to ${label}`}
+          onPress={() => onPress(value)}>
+          {isActive ? <Check fill="currentColor" size="md" /> : null}
+        </Pressable>
+        <Text style={[a.text_2xl, a.user_select_none]}>{emoji}</Text>
+      </View>
+    </View>
   )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import {useMediaQuery} from 'react-responsive'
 
+import {Schema} from '#/state/persisted'
 import {
   computeFontScaleMultiplier,
   getFontFamily,
@@ -10,7 +11,14 @@ import {
 } from '#/alf/fonts'
 import {createThemes, defaultTheme} from '#/alf/themes'
 import {Theme, ThemeName} from '#/alf/types'
-import {BLUE_HUE, GREEN_HUE, RED_HUE} from '#/alf/util/colorGeneration'
+import {
+  BLUE_HUE,
+  GREEN_HUE,
+  ORANGE_HUE,
+  PURPLE_HUE,
+  RED_HUE,
+  YELLOW_HUE,
+} from '#/alf/util/colorGeneration'
 import {Device} from '#/storage'
 
 export {atoms} from '#/alf/atoms'
@@ -49,6 +57,13 @@ export const Context = React.createContext<Alf>({
       primary: BLUE_HUE,
       negative: RED_HUE,
       positive: GREEN_HUE,
+
+      blue: BLUE_HUE,
+      red: RED_HUE,
+      green: GREEN_HUE,
+      orange: ORANGE_HUE,
+      yellow: YELLOW_HUE,
+      purple: PURPLE_HUE,
     },
   }),
   fonts: {
@@ -99,6 +114,13 @@ export function ThemeProvider({
         primary: BLUE_HUE,
         negative: RED_HUE,
         positive: GREEN_HUE,
+
+        blue: BLUE_HUE,
+        red: RED_HUE,
+        green: GREEN_HUE,
+        orange: ORANGE_HUE,
+        yellow: YELLOW_HUE,
+        purple: PURPLE_HUE,
       },
     })
   }, [])
@@ -154,4 +176,37 @@ export function useBreakpoints() {
     gtMobile,
     gtTablet,
   }
+}
+
+export function useThemeColors(): Array<{
+  label: string
+  value: Schema['themeColor']
+  color: string
+  emoji: string
+}> {
+  const t = useTheme()
+
+  return [
+    {label: 'Blue', value: 'blue', color: t.palette.primary_500, emoji: '💙'},
+    {
+      label: 'Yellow',
+      value: 'yellow',
+      color: t.palette.primary_500,
+      emoji: '☀️',
+    },
+    {label: 'Red', value: 'red', color: t.palette.primary_500, emoji: '🌸'},
+    {
+      label: 'Purple',
+      value: 'purple',
+      color: t.palette.primary_500,
+      emoji: '🍆',
+    },
+    {
+      label: 'Orange',
+      value: 'orange',
+      color: t.palette.primary_500,
+      emoji: '🍊',
+    },
+    {label: 'Green', value: 'green', color: t.palette.primary_500, emoji: '🌵'},
+  ]
 }

@@ -1,6 +1,9 @@
 export const BLUE_HUE = 211
 export const RED_HUE = 346
 export const GREEN_HUE = 152
+export const PURPLE_HUE = 280
+export const YELLOW_HUE = 48
+export const ORANGE_HUE = 24
 
 /**
  * Smooth progression of lightness "stops" for generating HSL colors.
